@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Entry</title>
+</head>
+<body>
+    <h1>Enter User Skills</h1>
+    <form action="/add_user" method="post">
+        <input type="text" name="name" placeholder="Enter your name" required>
+        <input type="text" name="skills" placeholder="Enter your skills" required>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>All Users and Their Skills</h2>
+    <ul id="usersList"></ul>
+    <script>
+        fetch('/users')
+            .then(response => response.json())
+            .then(data => {
+                const usersList = document.getElementById('usersList');
+                data.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${user.name}: ${user.skills}`;
+                    usersList.appendChild(listItem);
+                });
+            });
+    </script>
+</body>
+</html>
