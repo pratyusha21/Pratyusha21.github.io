@@ -3,28 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills Entry</title>
+    <title>User Skills Form</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Enter User Skills</h1>
-    <form action="/add_user" method="post">
-        <input type="text" name="name" placeholder="Enter your name" required>
-        <input type="text" name="skills" placeholder="Enter your skills" required>
-        <button type="submit">Submit</button>
-    </form>
-    <h2>All Users and Their Skills</h2>
-    <ul id="usersList"></ul>
-    <script>
-        fetch('/users')
-            .then(response => response.json())
-            .then(data => {
-                const usersList = document.getElementById('usersList');
-                data.forEach(user => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = `${user.name}: ${user.skills}`;
-                    usersList.appendChild(listItem);
-                });
-            });
-    </script>
+    <div id="form-container">
+        <form id="userForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="skills">Skills:</label>
+            <input type="text" id="skills" name="skills" autocomplete="off" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="users-list">
+        <h2>List of Users and Their Skills</h2>
+        <ul id="users"></ul>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
